@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DZ Cars Adventure UAE</title>
+
+<!-- ===== Security Headers (FIXED) ===== -->
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'self';
+               img-src 'self' https:;
+               script-src 'self' 'unsafe-inline';
+               style-src 'self' https: 'unsafe-inline';">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Montserrat',sans-serif;}
+body{background:#050505;color:#e7e7e7;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;border:none;font-weight:600;transition:.3s;}
+:root{--gold:#d4af37;--green:#1d7d3a;}
+
+nav{position:fixed;top:0;width:100%;display:flex;justify-content:center;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);padding:10px 0;z-index:100;}
+nav a{margin:0 20px;color:var(--gold);font-weight:700;letter-spacing:.5px;}
+
+header{position:relative;background:url('CanamBanner.jpg') center/cover no-repeat;background-attachment:fixed;height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;text-align:center;}
+header .logo{position:fixed;top:20px;right:20px;width:130px;z-index:500;box-shadow:0 4px 10px rgba(0,0,0,0.3);}
+header h1,header p,header a{z-index:2;}
+header h1{font-size:3rem;margin-bottom:10px;letter-spacing:1px;}
+header p{font-size:1.2rem;margin-bottom:20px;opacity:.9;}
+header .btn{position:relative;overflow:hidden;z-index:1;background:var(--gold);color:#111;padding:15px 35px;border-radius:10px;font-size:1.1rem;}
+header .btn::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;border-radius:inherit;background:rgba(255,255,255,0.2);opacity:0;transition:opacity .3s;}
+header .btn:hover::after{opacity:1;animation:glow 1.2s infinite alternate;}
+@keyframes glow{0%{opacity:.3}100%{opacity:.6}}
+
+section{padding:60px 20px;}
+section h2{text-align:center;color:var(--gold);margin-bottom:30px;}
+
+.booking-card{max-width:700px;margin:0 auto;background:#111;padding:30px;border-radius:15px;box-shadow:0 8px 25px rgba(0,0,0,.3);}
+.booking-card input,.booking-card select,.booking-card textarea{width:100%;padding:12px 15px;margin:10px 0;border-radius:8px;background:#000;color:#ddd;border:1px solid #333;}
+.booking-card button{width:100%;padding:14px;border-radius:10px;margin-top:10px;background:var(--green);color:#fff;font-weight:700;position:relative;overflow:hidden;z-index:1;}
+.booking-card button::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;border-radius:inherit;background:rgba(255,255,255,0.15);opacity:0;transition:opacity .3s;}
+.booking-card button:hover::after{opacity:1;animation:glow 1.2s infinite alternate;}
+
+.view-rides-btn{display:block;text-align:center;margin-top:15px;padding:12px;border-radius:10px;background:var(--gold);color:#111;font-weight:700;transition:.3s;}
+.view-rides-btn:hover{box-shadow:0 8px 20px rgba(212,175,55,0.6);transform:translateY(-3px);}
+
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px;max-width:1000px;margin:0 auto;}
+.gallery-grid img{width:100%;height:150px;object-fit:cover;border-radius:8px;box-shadow:0 5px 15px rgba(0,0,0,0.2);}
+
+footer{background:#000;color:#ccc;padding:30px;text-align:center;}
+
+.whatsapp-float{position:fixed;bottom:18px;right:18px;background:var(--green);color:#fff;padding:14px 18px;border-radius:40px;box-shadow:0 10px 25px rgba(0,0,0,.25);font-weight:700;display:flex;align-items:center;gap:8px;z-index:200;}
+.whatsapp-float:hover{filter:brightness(1.1);}
+
+#termsModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);justify-content:center;align-items:center;z-index:300;}
+#termsModal .box{background:#111;max-width:650px;width:92%;padding:28px;border-radius:15px;max-height:80%;overflow-y:auto;position:relative;color:#ddd;}
+#termsModal .close{position:absolute;top:12px;right:18px;font-size:1.6rem;cursor:pointer;color:var(--gold);}
+
+@media(max-width:768px){
+  nav a{margin:0 12px;font-size:.9rem;}
+  header h1{font-size:2rem;}
+  header p{font-size:1rem;}
+  .gallery-grid img{height:120px;}
+  .booking-card{padding:20px;}
+  .btn,.view-rides-btn{padding:12px;font-size:1rem;}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#booking">Booking</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#privacy">Privacy Policy</a>
+</nav>
+
+<header>
+  <img src="o.png" alt="DZ Car Adventure" class="logo">
+  <h1>DZ Car Adventure UAE</h1>
+  <p>Thrilling Desert & Dune Buggy Adventures</p>
+  <a href="#booking" class="btn">Book Your Ride</a>
+</header>
+
+<section id="booking">
+  <h2>Book Your Adventure</h2>
+  <div class="booking-card">
+    <form id="bookingForm">
+      <label>Choose Activity</label>
+      <select id="activity">
+        <option value="KTM" data-price-1="600" data-price-2="1100">KTM</option>
+        <option value="Can-Am 2 Seater" data-price-0.5="600" data-price-1="1000">Can-Am 2 Seater</option>
+        <option value="4 Seater Polaris" data-price-1="800" data-price-2="1500">4 Seater Polaris</option>
+        <option value="Polaris 2 Seater" data-price-0.5="500" data-price-1="600">Polaris 2 Seater</option>
+        <option value="Automatic Bike 575 cc" data-price-0.5="25" data-price-1="450">Automatic Bike 575 cc</option>
+        <option value="Go Back Automatic 220 cc" data-price-0.5="15" data-price-1="250">Go Back Automatic 220 cc</option>
+        <option value="Can-Am 4 Seater" data-price-1="1200" data-price-2="2200">Can-Am 4 Seater</option>
+      </select>
+
+      <label>Duration</label>
+      <select id="duration"></select>
+
+      <label>Number of Participants</label>
+      <input type="number" id="people" min="1" value="1">
+
+      <label>Date</label><input type="date" id="date">
+      <label>Time</label><input type="time" id="time">
+
+      <label>Your Name</label><input type="text" id="name">
+      <label>Phone</label><input type="tel" id="phone">
+      <label>Email</label><input type="email" id="email">
+
+      <p id="totalPrice"><strong>Total Price:</strong> AED 600</p>
+
+      <label style="font-size:.9rem;display:flex;align-items:center;gap:6px;">
+        <input type="checkbox" id="agreeTerms">
+        I agree to the
+        <a href="#" id="termsLink" style="color:var(--gold);font-weight:600;">Terms and Conditions</a>
+      </label>
+
+      <button type="submit">Submit Booking</button>
+    </form>
+
+    <a href="rides.html" class="view-rides-btn">View All Rides & Prices</a>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2>Gallery</h2>
+  <div class="gallery-grid">
+    <img src="gallery1.jpg">
+    <img src="gallery2.jpg">
+    <img src="gallery3.jpg">
+    <img src="gallery4.jpg">
+  </div>
+</section>
+
+<section id="privacy">
+  <h2>Privacy Policy</h2>
+  <p style="max-width:900px;margin:auto;text-align:center;">
+    We only collect the details needed to manage your booking. Your information is kept secure and never shared without permission.
+  </p>
+</section>
+
+<footer>© DZ Cars Adventure Dubai</footer>
+
+<a class="whatsapp-float" 
+   href="https://wa.me/971565212443?text=Hi%20Customer%20Care%2C%20I%20need%20help%20with%20a%20technical%20or%20general%20query." target="_blank">
+   💬 Customer Care
+</a>
+
+<div id="termsModal">
+  <div class="box">
+    <span class="close" id="closeModal">&times;</span>
+    <h2 style="color:var(--gold);text-align:center;margin-bottom:15px;">Terms and Conditions</h2>
+    <ul style="margin-left:18px;line-height:1.8;">
+      <li>Bookings must be confirmed in advance.</li>
+      <li>Payments secure the booking and may be required before arrival.</li>
+      <li>Safety rules must be followed. Protective gear is provided.</li>
+      <li>Cancellations made within 24 hours may not be refundable.</li>
+      <li>Adventure rides involve risk and require responsible behavior.</li>
+      <li>Management may refuse service if safety is at risk.</li>
+      <li>Photos taken may be used for marketing unless you request otherwise.</li>
+      <li>All activities are subject to UAE laws and regulations.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+// ===== Price & Duration =====
+const activity=document.getElementById('activity');
+const duration=document.getElementById('duration');
+const people=document.getElementById('people');
+const totalPrice=document.getElementById('totalPrice');
+
+function updateDurationOptions(){
+  duration.innerHTML='';
+
+  if(activity.value === 'KTM'){
+    duration.innerHTML =
+      '<option value="1">1 hour</option>' +
+      '<option value="2">2 hours</option>';
+  } else {
+    duration.innerHTML =
+      '<option value="0.5">30 min</option>' +
+      '<option value="1">1 hour</option>' +
+      '<option value="1.5">1 hour 30 min</option>';
+  }
+}
+
+function updatePrice(){
+  const selected = activity.selectedOptions[0];
+  const dur = duration.value;
+  let price = selected.dataset['price-'+dur];
+
+  if(!price){
+    const oneHour = Number(selected.dataset['price-1'] || 0);
+    price = oneHour * Number(dur);
+  }
+
+  totalPrice.textContent = "Total Price: AED " + (Number(price) * Number(people.value || 1));
+}
+
+activity.addEventListener('change',()=>{updateDurationOptions();updatePrice();});
+duration.addEventListener('change',updatePrice);
+people.addEventListener('input',updatePrice);
+
+updateDurationOptions();
+updatePrice();
+
+// ===== Terms Modal =====
+const modal=document.getElementById('termsModal');
+document.getElementById('termsLink').onclick=e=>{e.preventDefault();modal.style.display='flex';};
+document.getElementById('closeModal').onclick=()=>modal.style.display='none';
+window.onclick=e=>{if(e.target===modal)modal.style.display='none';};
+
+// ===== Validation & Submission =====
+function isValidEmail(email){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);}
+function isValidPhone(phone){return /^[0-9+]{6,15}$/.test(phone);}
+
+document.getElementById('bookingForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const email=document.getElementById('email').value;
+  const phone=document.getElementById('phone').value;
+
+  if(!document.getElementById('agreeTerms').checked){alert("Please agree to the Terms and Conditions before booking.");return;}
+  if(!isValidEmail(email)){alert("Please enter a valid email.");return;}
+  if(!isValidPhone(phone)){alert("Please enter a valid phone number.");return;}
+
+  const msg=encodeURIComponent(
+    "🛵 New Booking Request 🏜️\n"+
+    "Name: "+document.getElementById('name').value+"\n"+
+    "Phone: "+phone+"\n"+
+    "Email: "+email+"\n"+
+    "Activity: "+activity.value+"\n"+
+    "Duration: "+duration.options[duration.selectedIndex].text+"\n"+
+    "Participants: "+people.value+"\n"+
+    totalPrice.textContent+"\n"+
+    "Date: "+document.getElementById('date').value+"\n"+
+    "Time: "+document.getElementById('time').value
+  );
+  window.open("https://wa.me/971565212443?text="+msg,"_blank");
+});
+</script>
+
+</body>
+</html>
